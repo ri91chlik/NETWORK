@@ -4,26 +4,26 @@
     <h4>ALL POSTS</h4>
     
     {%if user.is_authenticated%}
-    <div class="allposts">   
-            <div class="nPost my-7">
+       
+        <div class="nPost ">
                 <h5>New Post</h5>
                 <form action="{%url 'new_post'%}" method="post">
                     {%csrf_token%}
-                    <textarea name="information" row="5" cols="110"></textarea><br>
+                    <textarea name="information" row="5" cols="120"></textarea><br>
                     <input type="submit" value= "Post" class="btn btn-primary">
                 </form>
-            </div>
+        </div>    
 
     {%endif%}
 
     
         {% for post in all_posts %}
-        <div class="profile">
+        <div class="posts">
             <h4 class="name"> @{{post.user}}</h4>
                 <h5 class="information"> {{post.information}}</h5>
                     <p class="date">{{post.date}}</p>
         </div>
-    </div>
+    
         {% endfor %}
     
 
