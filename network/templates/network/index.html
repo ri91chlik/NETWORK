@@ -1,7 +1,7 @@
 {% extends "network/layout.html" %}
     
 {% block body %}
-    <h4>ALL POSTS</h4>
+    <h4 class='head'>ALL POSTS</h4>
     
     {%if user.is_authenticated%}
        
@@ -17,7 +17,7 @@
     {%endif%}
 
     
-        {% for post in all_posts %}
+        {% for post in posts_on_page %}
         <div class="posts">
             <h4 class="name"> @{{post.user}}</h4>
                 <h5 class="information"> {{post.information}}</h5>
@@ -25,6 +25,18 @@
         </div>
     
         {% endfor %}
+
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination d-flex-justify-information-center">
+                {% if posts_on_page.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{posts_on_page.previous_page_number}}">Previous</a></li>
+                {%endif%}   
+                {%if posts_on_page.has_next%}
+                    <li class="page-item"><a class="page-link" href="?page={{posts_on_page.next_page_number}}">Next</a></li>
+                {%endif%}
+            </ul>
+        </nav>
     
 
 {% endblock %}
